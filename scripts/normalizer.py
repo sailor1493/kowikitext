@@ -18,7 +18,13 @@ def text_preprocess(line):
         return ""
     if line[:2] == "* " or line[:2] == "**":
         return line[2:].strip()
-    if line[0] == ":" or line[0] == "\\" or line[0] == "!" or line[0] == "&" or line[0] == ";":
+    if (
+        line[0] == ":"
+        or line[0] == "\\"
+        or line[0] == "!"
+        or line[0] == "&"
+        or line[0] == ";"
+    ):
         return ""
     if line[:2] == "==" and line[-2:] == "==":
         return title_preprocess(line)
@@ -57,7 +63,7 @@ def title_preprocess(line):
         return ""
     line = detach_link(line)
     line = common(line)
-    line = '\n' + line.replace('=', ' =').strip() + '\n'
+    line = "\n" + line.replace("=", " =").strip() + "\n"
     return line
 
 
@@ -88,6 +94,8 @@ def common(line):
         r"((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)", " ", line
     )
     line = re.sub(f"\([,\s]+\)", "", line)
+    # normalize all double quotation marks
+    line = re.sub(r"[“”]", '"', line)
     return line.strip()
 
 

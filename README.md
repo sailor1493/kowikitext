@@ -1,3 +1,19 @@
+# Ko-wikitext Automation
+
+Base는 원본 리포지토리로 하되, 매 업데이트가 나올 때 마다 최신 데이터셋을 덤프하는 기능을 추가한다.
+
+## 사용 준비
+
+```bash
+conda create -n kowiki python=3.10 -y
+conda activate kowiki
+pip install -r requirements.txt
+```
+
+```bash
+ln -s /path/to/save/data kowiki_data
+```
+
 # Ko-wikitext
 
 Wikitext format Korean corpus
