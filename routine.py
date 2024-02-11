@@ -15,6 +15,8 @@ def main():
     selector = "body > pre > a"
     tags = soup.select(selector)
 
+    provided = []
+
     for tag in tags:
         content = tag.get_text()
         if content.startswith("latest"):
@@ -22,8 +24,12 @@ def main():
         if ".." in content:
             continue
         content = content.replace("/", "")
-        if content in done:
-            continue
+        provided.append(content)
+    print(f"Provided: {provided}")
+    todo = [x for x in provided if x not in done]
+    print(f"Count of todo: {len(todo)}")
+    for content in todo:
+        provided.append(content)
         print(f"Downloading {content}")
         wsp = "/home/s1/chanwoopark/dataset_scripts/kowikitext/scripts"
         cmd = f"cd {wsp} && bash pipeline.sh {content}"
