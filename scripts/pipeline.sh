@@ -41,3 +41,5 @@ wait
 python split_dump_to_wikitext_files.py --date $date
 python concatenate.py --date $date
 python generate_dataset.py --date $date
+
+rm -rf $workspace
