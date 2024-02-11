@@ -39,7 +39,8 @@ download $fname_index &
 wait
 
 python split_dump_to_wikitext_files.py --date $date
-python concatenate.py --date $date
+# We don't sample the data to generate splits
+# python concatenate.py --date $date
 python generate_dataset.py --date $date
 
-rm -rf $workspace
+rm -rf $save_dir
